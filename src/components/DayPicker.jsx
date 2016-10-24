@@ -324,7 +324,7 @@ export default class DayPicker extends React.Component {
     for (let i = 0; i < 7; i++) {
       header.push(
         <li key={i}>
-          <small>{moment().weekday(i).format('dd')}</small>
+          <small>{moment().weekday(i).format('ddd')}</small>
         </li>
       );
     }

@@ -10,7 +10,7 @@ components.forEach(component => {
   const name = component.split('.')[0];
   const file = `./src/components/${name}`;
   files.push(file);
-  entries[name] = file;
+  entries[name] = ['babel-polyfill', file];
 });
 
 module.exports = {

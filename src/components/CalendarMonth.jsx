@@ -76,6 +76,7 @@ export default function CalendarMonth(props) {
     'CalendarMonth--horizontal': orientation === HORIZONTAL_ORIENTATION,
     'CalendarMonth--vertical': orientation === VERTICAL_ORIENTATION,
   });
+  const now = moment();
 
   return (
     <div className={calendarMonthClasses} data-visible={isVisible}>
@@ -91,6 +92,7 @@ export default function CalendarMonth(props) {
                 const modifiersForDay = getModifiersForDay(modifiers, day);
                 const className = cx('CalendarMonth__day', {
                   'CalendarMonth__day--outside': !day || day.month() !== month.month(),
+                  'CalendarMonth__day--current-date': day.isSame(now, 'day'),
                 }, modifiersForDay.map(mod => `CalendarMonth__day--${mod}`));
 
                 return (

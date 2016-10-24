@@ -95,6 +95,7 @@
   },
   "dependencies": {
     "array-includes": "^3.0.2",
+    "babel-polyfill": "^6.16.0",
     "classnames": "^2.2.5",
     "react-moment-proptypes": "^1.2.0",
     "react-portal": "^2.2.1"
