@@ -31,6 +31,7 @@ const defaultProps = {
   date: null,
   focused: false,
   disabled: false,
+  readonly: false,
 
   onDateChange() {},
   onFocusChange() {},
@@ -114,8 +115,8 @@ export default class SingleDatePicker extends React.Component {
   }
 
   onClearFocus() {
-    const { focused, onFocusChange } = this.props;
-    if (!focused) return;
+    const { focused, onFocusChange, shouldClearFocus } = this.props;
+    if (!focused && !shouldClearFocus) return;
 
     onFocusChange({ focused: false });
   }
@@ -193,6 +194,7 @@ export default class SingleDatePicker extends React.Component {
       withFullScreenPortal,
       focused,
       initialVisibleMonth,
+      timeInput,
     } = this.props;
 
     const modifiers = {
@@ -200,7 +202,6 @@ export default class SingleDatePicker extends React.Component {
       'blocked-calendar': day => isDayBlocked(day),
       'blocked-out-of-range': day => isOutsideRange(day),
       valid: day => !this.isBlocked(day),
-      hovered: day => this.isHovered(day),
       selected: day => this.isSelected(day),
     };
 
@@ -213,8 +214,6 @@ export default class SingleDatePicker extends React.Component {
           enableOutsideDays={enableOutsideDays}
           modifiers={modifiers}
           numberOfMonths={numberOfMonths}
-          onDayMouseEnter={this.onDayMouseEnter}
-          onDayMouseLeave={this.onDayMouseLeave}
           onDayMouseDown={this.onDayClick}
           onDayTouchTap={this.onDayClick}
           onPrevMonthClick={onPrevMonthClick}
@@ -224,6 +223,7 @@ export default class SingleDatePicker extends React.Component {
           hidden={!focused}
           initialVisibleMonth={initialVisibleMonth}
           onOutsideClick={onOutsideClick}
+          timeInput={timeInput}
         />
 
         {withFullScreenPortal &&
@@ -251,6 +251,7 @@ export default class SingleDatePicker extends React.Component {
       date,
       withPortal,
       withFullScreenPortal,
+      readonly,
     } = this.props;
 
     const onOutsideClick = withPortal || withFullScreenPortal ? () => {} : this.onClearFocus;
@@ -262,6 +263,7 @@ export default class SingleDatePicker extends React.Component {
         <OutsideClickHandler onOutsideClick={onOutsideClick}>
           <SingleDatePickerInput
             id={id}
+            readonly={readonly}
             placeholder={placeholder}
             focused={focused}
             disabled={disabled}

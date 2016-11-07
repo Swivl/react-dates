@@ -92,7 +92,7 @@ export default function CalendarMonth(props) {
                 const modifiersForDay = getModifiersForDay(modifiers, day);
                 const className = cx('CalendarMonth__day', {
                   'CalendarMonth__day--outside': !day || day.month() !== month.month(),
-                  'CalendarMonth__day--current-date': day.isSame(now, 'day'),
+                  'CalendarMonth__day--current-date': moment(day).isSame(now, 'day'),
                 }, modifiersForDay.map(mod => `CalendarMonth__day--${mod}`));
 
                 return (

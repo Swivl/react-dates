@@ -43,6 +43,7 @@ const propTypes = {
   onPrevMonthClick: PropTypes.func,
   onNextMonthClick: PropTypes.func,
   onOutsideClick: PropTypes.func,
+  timeInput: PropTypes.element,
 
   // i18n
   monthFormat: PropTypes.string,
@@ -360,6 +361,7 @@ export default class DayPicker extends React.Component {
       onDayMouseLeave,
       onOutsideClick,
       monthFormat,
+      timeInput,
     } = this.props;
 
     const numOfWeekHeaders = this.isVertical() ? 1 : numberOfMonths;
@@ -447,6 +449,7 @@ export default class DayPicker extends React.Component {
             />
           </div>
         </OutsideClickHandler>
+        {timeInput}
       </div>
     );
   }

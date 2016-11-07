@@ -10,6 +10,7 @@ const propTypes = {
   dateValue: PropTypes.string,
   focused: PropTypes.bool,
   disabled: PropTypes.bool,
+  readonly: PropTypes.bool,
 
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
@@ -86,6 +87,7 @@ export default class DateInput extends React.Component {
       focused,
       onFocus,
       disabled,
+      readonly
     } = this.props;
 
     const value = dateValue || dateString;
@@ -114,6 +116,7 @@ export default class DateInput extends React.Component {
           placeholder={placeholder}
           autoComplete="off"
           maxLength={10}
+          readOnly={readonly}
           disabled={disabled || this.isTouchDevice}
         />
 

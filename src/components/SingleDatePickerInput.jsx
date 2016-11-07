@@ -9,6 +9,7 @@ const propTypes = {
   border: PropTypes.bool,
   focused: PropTypes.bool,
   disabled: PropTypes.bool,
+  readonly: PropTypes.bool,
 
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
@@ -40,6 +41,7 @@ export default function SingleDatePickerInput(props) {
     onFocus,
     onKeyDownShiftTab,
     onKeyDownTab,
+    readonly,
   } = props;
 
   return (
@@ -50,7 +52,7 @@ export default function SingleDatePickerInput(props) {
         dateValue={dateValue}
         focused={focused}
         disabled={disabled}
-
+        readonly={readonly}
         onChange={onChange}
         onFocus={onFocus}
         onKeyDownShiftTab={onKeyDownShiftTab}
